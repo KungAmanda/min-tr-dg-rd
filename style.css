@@ -1,29 +1,57 @@
-.titel{
+ /*detta gör så att allt står på rad längst upp på sidan*/
+ .titel{
+    margin: 1px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #b3ffb3;
-    padding: 2px;
     margin: auto;
+    margin-right: 40px;
+    padding-top: 1px;
 
+} 
+
+/*design till tabbarna*/
+.tabs a {
+  
+  padding-right: 5px;
+  text-decoration: none;
+  color: black;
 }
+
+
+
+
+.titel h1{
+  font-size: 40px;
+  font-family:Brush Script MT ;
+  padding-left: 15px;
+}
+
+/* Denna är till för textrutan */
 .intro{
-    text-align: center;
-    background-color: #4bcb54;
+  border-radius: 10px;
+  background-color: #4bcb54;
   padding: 5px;  
   width: 40%;
   margin: auto;
 }
-
+/*detta gör bakgrundsfärgen grön till hemsidan*/
 body{
-    background-color: #b3ffb3;
+   background-color: #b3ffb3;
+    
 }
 
+/*detta är till för sök funktionen som ändrar designen till rundare format och ger sök knappen en grönfärg*/
  .search-box input[type="text"] {
   padding: 10px;
-  border-radius: 40px;
+  border-radius: 10px;
   border: none;
   outline: none;
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 5px;
+  width: 400px;
+  
  }
  .search-box button {
     background-color: #4CAF50; /* Green */
