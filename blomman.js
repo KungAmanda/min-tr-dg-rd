@@ -1,5 +1,4 @@
- // Hämta referenser till elementen
-
+// Hämta referenser till elementen
 const plantNameInput = document.getElementById('plant-name');
 const waterRequirementInput = document.getElementsByName('water-requirement');
 const sunRequirementInput = document.getElementsByName('sun-requirement');
@@ -9,7 +8,7 @@ const plantTableBody = document.querySelector('#plant-table tbody');
 // Lägg till en eventlyssnare på formulärets submit-event
 document.querySelector('form').addEventListener('submit', (event) => {
   // Hindrar formuläret från att skickas vidare och ladda om sidan
-     event.preventDefault();
+  event.preventDefault();
 
   // Hämtar värdet från radioknapparna 
   let waterRequirement = '';
@@ -34,39 +33,37 @@ document.querySelector('form').addEventListener('submit', (event) => {
 });
 
 
-form.addEventListener('submit', (event) => {
+const form = document.querySelector('form');
+
+form.addEventListener('submit', async (event) => {
   event.preventDefault();
 
-  const formData = {
-    name: nameInput.value,
-    email: emailInput.value,
-    message: messageInput.value,
-  };
+  const formData = new FormData(form);
 
-  const jsonData = JSON.stringify(formData);
+  const jsonData = JSON.stringify({
+    plantName: formData.get('plant-name'),
+    waterRequirement: formData.get('water-requirement'),
+    sunRequirement: formData.get('sun-requirement'),
+    plantDescription: formData.get('plant-description'),
+  });
 
-  fetch('data.json', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: jsonData
-  })
-  .then(response => {
+  try {
+    const response = await fetch('http://localhost:3000', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: jsonData
+    });
+
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
-    return response.json();
-  })
-  .then(data => {
+
+    const data = await response.json();
     console.log(data);
-  })
-  .catch(error => {
+    form.reset();
+  } catch (error) {
     console.error('There was an error:', error);
-  });
-
-  form.reset();
-}); 
-
-
-
+  }
+});
