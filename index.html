@@ -5,9 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My garden</title>
+    <script src="blomman.js" defer></script>
+    
     <link rel="stylesheet" type="text/css" href="style.css">
+    
 </head>
-<body>
+<header>
     <!-- för titeln och introduktionen till hemsidan-->
     <div class="titel"> 
         <h1>My Garden</h1>
@@ -33,42 +36,59 @@
             Start exploring our site and see how it can enhance your gardening experience!
         </p>
     </div>
+  </header>
+    <body>
     <!-- detta är till för att kunna lägga till en växt-->
-    <div class="add-plant-section">
+    <div class="add-plant">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <h2>Add your favorite plant to the library</h2>
+      <form>
+        <label for="plant-name">Plant name:</label>
+        <input type="text" id="plant-name" name="plant-name"><br>
         <br>
+        <!-- radiobutton för vatten -->
+        <label for="water-requirement">Water:</label>
+        <input type="radio" id="water-requirement" name="water-requirement" value="Low">Low
+        <input type="radio" id="water-requirement" name="water-requirement" value="Medium">Medium
+        <input type="radio" id="water-requirement" name="water-requirement" value="High">High<br>
         <br>
+        <!-- radiobutton för sol -->
+        <label for="sun-requirement">Sun:</label>
+        <input type="radio" id="sun-requirement" name="sun-requirement" value="Low">Low
+        <input type="radio" id="sun-requirement" name="sun-requirement" value="Medium">Medium
+        <input type="radio" id="sun-requirement" name="sun-requirement" value="High">High<br>
         <br>
+        
+         <!-- kunna lägga beskrivning-->
+        <label for="plant-description">Short description:</label>
+        <textarea id="plant-description" name="plant-description"></textarea><br>
         <br>
-        <br>
-        <h2>Add your favorite plant to the library</h2>
-        <form>
-          <label for="plant-name">Plant name:</label>
-          <input type="text" id="plant-name" name="plant-name"><br>
-          <br>
-          <!-- radiobutton för vatten -->
-          <label for="water-requirement">Water:</label>
-          <input type="radio" id="water-requirement" name="water-requirement" value="Low">Low
-          <input type="radio" id="water-requirement" name="water-requirement" value="Medium">Medium
-          <input type="radio" id="water-requirement" name="water-requirement" value="High">High<br>
-          <br>
-          <!-- radiobutton för sol -->
-          <label for="sun-requirement">Sun:</label>
-          <input type="radio" id="sun-requirement" name="sun-requirement" value="Low">Low
-          <input type="radio" id="sun-requirement" name="sun-requirement" value="Medium">Medium
-          <input type="radio" id="sun-requirement" name="sun-requirement" value="High">High<br>
-          <br>
-          <!-- för att kunna lägga til en bild på växten-->
-          <label for="plant-image">Add a picture:</label>
-          <input type="file" id="plant-image" name="plant-image"><br>
-          <br>
-           <!-- kunna lägga beskrivning-->
-          <label for="plant-description">Short description:</label>
-          <textarea id="plant-description" name="plant-description"></textarea><br>
-          <br>
-          <!-- sparar-->
-          <input type="submit" value="Save">
+        <!-- sparar-->
+        <input type="submit" value="save">
+        
+      </form>
+    </div>
+    <table id="plant-table">
+      <thead>
+        <tr>
+          <th>Plant name</th>
+          <th>Water</th>
+          <th>Sun</th>
+          <th>Description</th>
           
-        </form>
-      </div>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- här ska de sparade växterna visas dynamiskt med hjälp av JavaScript -->
+      </tbody>
+    </table>
+    <footer>
+      <p>&copy; 2023 My Plant Library</p>
+   </footer>
 </body>
 </html>
