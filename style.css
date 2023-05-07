@@ -29,6 +29,7 @@
 
 /* Denna är till för textrutan */
 .intro{
+  text-align: center;
   border-radius: 10px;
   background-color: #4bcb54;
   padding: 5px;  
@@ -66,6 +67,50 @@ body{
     cursor: pointer;
     margin-left: 10px;
   }
+
+  /*design till add plant rutan*/
+  .add-plant {
+
+    border-radius: 10px;
+    background-color: #5def67;
+    padding: 5px;  
+    width: 40%;
+    
+    height:auto
+
+    
+  }
+  /* design till tabellen */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: #f8f9fa;
+    color: #212529;
+    font-size: 14px;
+  }
+  
+  th, td {
+    border: 1px solid #dee2e6;
+    padding: 0.5rem;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #343a40;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tr:hover {
+    background-color: #e2e6ea;
+  }
+
+
   
   
   

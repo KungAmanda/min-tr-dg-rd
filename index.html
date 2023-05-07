@@ -2,15 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My garden</title>
-    <script src="blomman.js" defer></script>
-    
     <link rel="stylesheet" type="text/css" href="style.css">
-    
-
-    
+    <script src="blomman.js" defer></script>   
+    <title>My garden</title>
 </head>
 <header>
     <!-- för titeln och introduktionen till hemsidan-->
@@ -20,75 +14,60 @@
             <input type="text" placeholder="Search">
             <button>Search</button>
           </div>
+          <!-- för tabsen -->
         <div class="tabs">
             <a href="#" class="tab1">sign in</a>
             <a href="#" class="tab2">about us</a>
             <a href="#" class="tab3">help</a>
         </div>
-    </div>
-    <!-- detta är för flikarna -->
-    <div class="tab-content">
-        <!-- här kan du lägga innehållet för varje flik -->
-    </div>
-    <!-- för paragrafen -->
-    <div class="intro">
-        <p> Welcome to our gardening website! <br>
-            Here, you can keep track of your favorite flowers and plants by adding them in our database.<br>
-            You can also write short descriptions and save them for future reference.<br>
-            Start exploring our site and see how it can enhance your gardening experience!
-        </p>
-    </div>
+    
+    
   </header>
     <body>
-    <!-- detta är till för att kunna lägga till en växt-->
+      <!-- detta kommer visa datan-->
+      <div id="json-data"></div>
+      <!-- ger kort info om vad hemsidan gör -->
+    <div class="intro">
+      <p> Welcome to our gardening website! <br>
+          Here, you can keep track of your favorite flowers and plants by adding them in our database.<br>
+          You can also write short descriptions and save them for future reference.<br>
+          Start exploring our site and see how it can enhance your gardening experience!
+      </p>
+  </div>
+
+    <!-- detta är för att kunna lägga till en växt-->
     <div class="add-plant">
       <br>
-      <br>
-      <br>
-      <br>
-      <br>
       <h2>Add your favorite plant to the library</h2>
-      <form>
-        <label for="plant-name">Plant name:</label>
-        <input type="text" id="plant-name" name="plant-name"><br>
+      <form id="formPlantis" method="post">
+        <!-- för vilken växt de är -->
+        <label for="plant">Plant name:</label>
+        <input type="text" id="plant" name="plant"><br>
         <br>
-        <!-- radiobutton för vatten -->
-        <label for="water-requirement">Water:</label>
-        <input type="radio" id="water-requirement" name="water-requirement" value="Low">Low
-        <input type="radio" id="water-requirement" name="water-requirement" value="Medium">Medium
-        <input type="radio" id="water-requirement" name="water-requirement" value="High">High<br>
+        <!-- för vatten -->
+        <label for="water">Water 1-10:</label>
+        <input type="text" id="water" name="water"><br>
         <br>
-        <!-- radiobutton för sol -->
-        <label for="sun-requirement">Sun:</label>
-        <input type="radio" id="sun-requirement" name="sun-requirement" value="Low">Low
-        <input type="radio" id="sun-requirement" name="sun-requirement" value="Medium">Medium
-        <input type="radio" id="sun-requirement" name="sun-requirement" value="High">High<br>
+        <!--  för sol -->
+        <label for="sun">Sun 1-10:</label>
+        <input type="text" id="sun" name="sun"><br>
         <br>
         
          <!-- kunna lägga beskrivning-->
-        <label for="plant-description">Short description:</label>
-        <textarea id="plant-description" name="plant-description"></textarea><br>
+        <label for="description">Short description:</label>
+        <textarea id="description" name="description"></textarea><br>
         <br>
-        <!-- sparar-->
+        <!-- spara knappen-->
         <input type="submit" value="save">
         
       </form>
+      <!-- hämta data knappen-->
+      <button onclick="getDataFromJSON()">Display saved plants</button>
+      <br>
     </div>
-    <table id="plant-table">
-      <thead>
-        <tr>
-          <th>Plant name</th>
-          <th>Water</th>
-          <th>Sun</th>
-          <th>Description</th>
-          
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- här ska de sparade växterna visas dynamiskt med hjälp av JavaScript -->
-      </tbody>
-    </table>
+   
+    <!-- lägger ut datan-->
+    <div id="getData"></div>
     <footer>
       <p>&copy; 2023 My Plant Library</p>
    </footer>

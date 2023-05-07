@@ -1,0 +1,32 @@
+[
+  {
+    "plant": "rose",
+    "water": "10",
+    "sun": "9",
+    "description": "i love roses"
+  },
+  {
+    "plant": "monstera",
+    "water": "3",
+    "sun": "2",
+    "description": "monsteras are very low maintenance!"
+  },
+  {
+    "plant": "solros",
+    "water": "8",
+    "sun": "10",
+    "description": "solrosor är vackra <3"
+  },
+  {
+    "plant": "kaktus",
+    "water": "1",
+    "sun": "7",
+    "description": "kaktusar är jätte enkla att ta hand om"
+  },
+  {
+    "plant": "palm",
+    "water": "4",
+    "sun": "6",
+    "description": "Det är en palm"
+  }
+]

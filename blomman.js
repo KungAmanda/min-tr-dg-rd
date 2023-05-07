@@ -1,69 +1,59 @@
-// Hämta referenser till elementen
-const plantNameInput = document.getElementById('plant-name');
-const waterRequirementInput = document.getElementsByName('water-requirement');
-const sunRequirementInput = document.getElementsByName('sun-requirement');
-const plantDescriptionInput = document.getElementById('plant-description');
-const plantTableBody = document.querySelector('#plant-table tbody');
+// väntar tills hela dokumentet har laddats 
+document.addEventListener("DOMContentLoaded", () => {
+  const userFrom = document.getElementById("formPlantis");
+  
+  // en händelselyssnare som hämtar inputen
+  userFrom.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      
+      let plant = document.getElementById("plant");
+      let water = document.getElementById("water");
+      let sun = document.getElementById("sun");
+      let description = document.getElementById("description");
 
-// Lägg till en eventlyssnare på formulärets submit-event
-document.querySelector('form').addEventListener('submit', (event) => {
-  // Hindrar formuläret från att skickas vidare och ladda om sidan
-  event.preventDefault();
-
-  // Hämtar värdet från radioknapparna 
-  let waterRequirement = '';
-  let sunRequirement = '';
-  waterRequirementInput.forEach((input) => {
-    if (input.checked) {
-      waterRequirement = input.value;
-    }
-  });
-  sunRequirementInput.forEach((input) => {
-    if (input.checked) {
-      sunRequirement = input.value;
-    }
-  });
-
-  // gör en ny rad i tabellen med värdet från textfälten och radioknapparna
-  const newRow = plantTableBody.insertRow();
-  newRow.insertCell().textContent = plantNameInput.value;
-  newRow.insertCell().textContent = waterRequirement;
-  newRow.insertCell().textContent = sunRequirement;
-  newRow.insertCell().textContent = plantDescriptionInput.value;
+      
+      let newUser = {
+          plant: plant.value,
+          water: water.value,
+          sun: sun.value,
+          description: description.value 
+      };
+      
+      // hämtar data
+      let response = await fetch("data.json");
+      let data = await response.json();
+      data.push(newUser);
+      
+      // skickar datan till servern
+      await fetch('index', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+        
+  })
 });
 
+// funktion som hämtar data och skriver ut det som en tabell
+async function getDataFromJSON() {
+  let jsonPath = await fetch ("data.json");
 
-const form = document.querySelector('form');
+  let jsonObject = await jsonPath.json();
+  let output = "<table><tr><th>plant</th><th>water</th><th>sun</th><th>description</th>";
+  
+  for (var i=0; i<jsonObject.length; i++) {
 
-form.addEventListener('submit', async (event) => {
-  event.preventDefault();
-
-  const formData = new FormData(form);
-
-  const jsonData = JSON.stringify({
-    plantName: formData.get('plant-name'),
-    waterRequirement: formData.get('water-requirement'),
-    sunRequirement: formData.get('sun-requirement'),
-    plantDescription: formData.get('plant-description'),
-  });
-
-  try {
-    const response = await fetch('http://localhost:3000', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: jsonData
-    });
-
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-
-    const data = await response.json();
-    console.log(data);
-    form.reset();
-  } catch (error) {
-    console.error('There was an error:', error);
+      var counter = jsonObject[i];
+      output += `<tr>`;
+      output += `<td>${counter.plant}</td>`;
+      output += `<td>${counter.water}</td>`;
+      output += `<td>${counter.sun}</td>`;
+      output += `<td>${counter.description}</td>`;
+      output += `</tr>`;
   }
-});
+  output += "</table>"
+
+  document.getElementById("getData").innerHTML = output;
+};
